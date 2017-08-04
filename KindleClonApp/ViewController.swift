@@ -32,13 +32,19 @@ class Page {
 }
 
 class ViewController: UIViewController {
+    
+    var books : [Book]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .red
         // can provide custom code starting here
+        setupBooks()
         
+    }
+    
+    func setupBooks(){
         let page1 = Page(number: 1, text: "Text for the first page")
         let page2 = Page(number: 2, text: "This is the text for second page")
         
@@ -46,7 +52,7 @@ class ViewController: UIViewController {
         
         let book = Book(title: "Steve Jobs", author: "Walter Isaacson", pages: pages)
         
-
+        
         // Create new Book object
         let book2 = Book(title: "Bill Gates: A Biography", author: "Michael Becraft",
                          pages: [Page(number: 1, text: "Text for page 1"),
@@ -54,16 +60,34 @@ class ViewController: UIViewController {
                                  Page(number: 3, text: "Text for page 3"),
                                  Page(number: 4, text: "Text for page 4")])
         
-        // Loop of the books and the pages in it
-        for book in [book, book2]{
-            print(book.title)
-            for page in book.pages {
-                print(page.text)
+        self.books = [book, book2]
+        
+        
+        // another way
+        //        guard let books = self.books else { return }
+        //
+        //        for book in books{
+        //            print(book.title)
+        //            for page in book.pages {
+        //                print(page.text)
+        //            }
+        //
+        //        }
+        
+        // Loop of the books and the pages in it, use optional value
+        if let books = self.books{
+            
+            for book in books{
+                print(book.title)
+                for page in book.pages {
+                    print(page.text)
+                }
+                
             }
-        
         }
-        
-        
+
+    
     }
+    
 }
 
