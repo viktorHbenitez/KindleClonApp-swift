@@ -8,35 +8,14 @@
 
 import UIKit
 
-class Book {
-    let title: String
-    let author: String
-    let pages: [Page]  // one to many : for that book class has the Page's object
-    
-    init(title: String, author: String, pages: [Page]) {
-        self.title = title
-        self.author = author
-        self.pages = pages
-    }
-    
-}
-
-class Page {
-    let number: Int
-    let text: String
-    
-    init(number: Int, text: String) {
-        self.number = number
-        self.text = text
-    }
-}
-
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
     
     var books : [Book]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Kindle App"
         
         view.backgroundColor = .red
         // can provide custom code starting here
