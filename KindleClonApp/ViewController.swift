@@ -18,6 +18,7 @@ class ViewController: UITableViewController {
         tableView.register(BookCell.self, forCellReuseIdentifier: "cellId")
         tableView.tableFooterView = UIView()
         
+        
         navigationItem.title = "Kindle App"
         
         // can provide custom code starting here
@@ -25,17 +26,26 @@ class ViewController: UITableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Create a collectionViewController
+        let layout = UICollectionViewFlowLayout()
+        let bookPagerController = BookPagerController(collectionViewLayout: layout)
+        
+        let navController = UINavigationController(rootViewController: bookPagerController)
+        present(navController, animated: true, completion: nil)
+
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 86
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-//        
-//        let book = books?[indexPath.row]
-//        
-//        cell.textLabel?.text = book?.title
-//        cell.imageView?.image = book?.image
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! BookCell
+        
+        let book = books?[indexPath.row]
+        cell.book = book
         
         return cell
     }

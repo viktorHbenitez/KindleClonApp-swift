@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E45A7CA91F3ABDD8005221C9 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45A7CA81F3ABDD8005221C9 /* BookCell.swift */; };
+		E4A20DB51F45557000A98D55 /* BookPagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A20DB41F45557000A98D55 /* BookPagerController.swift */; };
 		E4B74F7A1F371319006ADDE4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B74F791F371319006ADDE4 /* Models.swift */; };
 		E4CCC6D61F3508010081868A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CCC6D51F3508010081868A /* AppDelegate.swift */; };
 		E4CCC6D81F3508010081868A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CCC6D71F3508010081868A /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		E45A7CA81F3ABDD8005221C9 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		E4A20DB41F45557000A98D55 /* BookPagerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPagerController.swift; sourceTree = "<group>"; };
 		E4B74F791F371319006ADDE4 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E4CCC6D21F3508010081868A /* KindleClonApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KindleClonApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CCC6D51F3508010081868A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				E4CCC6DE1F3508010081868A /* LaunchScreen.storyboard */,
 				E4CCC6E11F3508010081868A /* Info.plist */,
 				E45A7CA81F3ABDD8005221C9 /* BookCell.swift */,
+				E4A20DB41F45557000A98D55 /* BookPagerController.swift */,
 			);
 			path = KindleClonApp;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E45A7CA91F3ABDD8005221C9 /* BookCell.swift in Sources */,
+				E4A20DB51F45557000A98D55 /* BookPagerController.swift in Sources */,
 				E4B74F7A1F371319006ADDE4 /* Models.swift in Sources */,
 				E4CCC6D81F3508010081868A /* ViewController.swift in Sources */,
 				E4CCC6D61F3508010081868A /* AppDelegate.swift in Sources */,
