@@ -16,7 +16,7 @@ class BookPagerController: UICollectionViewController {
         collectionView?.backgroundColor = .white
         navigationItem.title = "Book"
         
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+        collectionView?.register(PageCell.self, forCellWithReuseIdentifier: "cellId")
         
         // tell the collection view to scroll horizontally
         let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout  // we need this for the properties
@@ -34,12 +34,11 @@ class BookPagerController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
         
     
-        if indexPath.item % 2 == 0{
+        /*if indexPath.item % 2 == 0{
             cell.backgroundColor = .red
         }else{
             cell.backgroundColor = .blue
-        }
-        
+        }*/
         
         
         return cell
