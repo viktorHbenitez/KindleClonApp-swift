@@ -28,9 +28,16 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        // Add author to the collectionView
+        let selectedBook = self.books?[indexPath.row]
+//        print(book?.title)
+//        return
+        
         // Create a collectionViewController
         let layout = UICollectionViewFlowLayout()
         let bookPagerController = BookPagerController(collectionViewLayout: layout)
+        
+        bookPagerController.book = selectedBook  // pass selected book object
         
         let navController = UINavigationController(rootViewController: bookPagerController)
         present(navController, animated: true, completion: nil)
@@ -75,8 +82,7 @@ class ViewController: UITableViewController {
                                  Page(number: 4, text: "Text for page 4")])
         
         self.books = [book, book2]
-        
-        
+                
         // another way
         //        guard let books = self.books else { return }
         //
