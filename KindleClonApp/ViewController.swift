@@ -14,16 +14,19 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
+        // can provide custom code starting here
         tableView.register(BookCell.self, forCellReuseIdentifier: "cellId")
         tableView.tableFooterView = UIView()
         
         
         navigationItem.title = "Kindle App"
         
-        // can provide custom code starting here
-        setupBooks()
-        fetchBooks()
+//        // create all books manually
+//        setupBooks()
+
+        fetchBooks()  // JSON FILE
         
     }
     
@@ -34,22 +37,57 @@ class ViewController: UITableViewController {
         // Fetch books from json: URLSession, runs in background thread
         if let url = URL(string: "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/kindle.json"){
             
+            // 1. Fetch the books from JSON file
             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                 
                 if let err = error{
                     print("Faild to fetch external json books: ", err)
                     return
                 }
-                // status code 200 means the request is fine
-                print(response)
+         
                 guard let data = data else { return }
                 
-                guard let dataAsString = String(data: data, encoding: .utf8) else { return }
-                print(dataAsString)
+                // 2. JSON serialization
+                do{
+                    let json =  try JSONSerialization.jsonObject(with: data, options: .mutableContainers)  // return array of dictionaries [[String : Any]]
+                    
+                    // Cast the json in array of dictionaries [Array [Dictionary (String : Any)]]
+                    guard let bookDictionaries = json as? [[String : Any]] else { return }
+                    
+                    self.books = []  // inicialization of the book's array
+                    
+                    // 3. Create the book's object with the data of the JSON file
+                    for bookDictionary in bookDictionaries{
+                        if let title = bookDictionary["title"] as? String,
+                            let author = bookDictionary["author"] as? String{
+                            
+                            let book = Book(title: title,
+                                            author: author,
+                                            image: #imageLiteral(resourceName: "steve_jobs"),
+                                            pages: [])
+                            
+//                            print(book.title)
+                            
+                            // add to the books container
+                            self.books?.append(book)
+                            
+                        }
+                    }
+                    guard let allBooks = self.books else { return }
+                    print("All our books: ", allBooks.count)
+                    
+                    // 4. IMPORTANT : RELOAD THE TABLEVIEW IN THE MAIN THREAD (UPDATE THE UIVIEW'S IN THE MAIN THREAD )
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
+                }catch let jsonError{
+                    print("Failed to parse JSON properly: ", jsonError)
                 
+                }
+            
             }).resume()
             
-            print("Have you fetches the books yet?")
         
         }
         
@@ -124,16 +162,16 @@ class ViewController: UITableViewController {
         //        }
         
         // Loop of the books and the pages in it, use optional value
-        if let books = self.books{
-            
-            for book in books{
-                print(book.title)
-                for page in book.pages {
-                    print(page.text)
-                }
-                
-            }
-        }
+//        if let books = self.books{
+//            
+//            for book in books{
+//                print(book.title)
+//                for page in book.pages {
+//                    print(page.text)
+//                }
+//                
+//            }
+//        }
 
     
     }
