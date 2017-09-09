@@ -44,7 +44,6 @@ class ViewController: UITableViewController {
                     print("Faild to fetch external json books: ", err)
                     return
                 }
-         
                 guard let data = data else { return }
                 
                 // 2. JSON serialization
@@ -58,21 +57,12 @@ class ViewController: UITableViewController {
                     
                     // 3. Create the book's object with the data of the JSON file
                     for bookDictionary in bookDictionaries{
-                        if let title = bookDictionary["title"] as? String,
-                            let author = bookDictionary["author"] as? String{
-                            
-                            let book = Book(title: title,
-                                            author: author,
-                                            image: #imageLiteral(resourceName: "steve_jobs"),
-                                            pages: [])
-                            
-//                            print(book.title)
-                            
-                            // add to the books container
-                            self.books?.append(book)
-                            
-                        }
+                        
+                        let book = Book(dictionary: bookDictionary)
+                        self.books?.append(book)
+              
                     }
+                    
                     guard let allBooks = self.books else { return }
                     print("All our books: ", allBooks.count)
                     
