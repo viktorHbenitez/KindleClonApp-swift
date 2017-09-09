@@ -23,6 +23,35 @@ class ViewController: UITableViewController {
         
         // can provide custom code starting here
         setupBooks()
+        fetchBooks()
+        
+    }
+    
+    func fetchBooks() {
+        
+        print("Fetching Books from external json...")
+        
+        // Fetch books from json: URLSession, runs in background thread
+        if let url = URL(string: "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/kindle.json"){
+            
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                
+                if let err = error{
+                    print("Faild to fetch external json books: ", err)
+                    return
+                }
+                // status code 200 means the request is fine
+                print(response)
+                guard let data = data else { return }
+                
+                guard let dataAsString = String(data: data, encoding: .utf8) else { return }
+                print(dataAsString)
+                
+            }).resume()
+            
+            print("Have you fetches the books yet?")
+        
+        }
         
     }
     
