@@ -12,9 +12,33 @@ class BookCell: UITableViewCell {
     
     var book: Book? {
         didSet{
-            coverImageView.image = book?.image
             titleLabel.text = book?.title
             authorLabel.text = book?.author
+            
+            // Download the Url from the JSON file: use URLSession
+            coverImageView.image = nil
+            
+            guard let coverImageUrl = book?.coverImageUrl else { return }  // String URL
+            guard let url = URL(string: coverImageUrl) else { return }  // create the url
+            
+            // 1. USE URLSession to download the image from JSON file
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                
+                if let err = error{
+                    print("Failed to retrieve our book cover image: ", err)
+                    return
+                }
+                
+                guard let imageData = data else { return }  // the data property is optional  too
+                let image = UIImage(data: imageData) // 2. create the image with the data property
+                
+                // Render the image in the main Thread
+                DispatchQueue.main.async {
+                    self.coverImageView.image = image
+
+                }
+            }.resume()
+            
             
         }
     }
