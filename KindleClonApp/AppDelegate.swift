@@ -8,6 +8,15 @@
 
 import UIKit
 
+
+// 1. Change the color of the Status bar component
+class LightStatusBarNavController: UINavigationController{
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
+}
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+        // 2. Use the LightStatusBarNavController class instead of dafult UINavigationController
+        window?.rootViewController = LightStatusBarNavController(rootViewController: ViewController())
         
         return true
     }

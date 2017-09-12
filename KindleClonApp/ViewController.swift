@@ -15,6 +15,8 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupNavigationBarStyle()
+        setupNavBarButtons()
         
         // can provide custom code starting here
         tableView.register(BookCell.self, forCellReuseIdentifier: "cellId")
@@ -29,6 +31,39 @@ class ViewController: UITableViewController {
         fetchBooks()  // JSON FILE
         
     }
+    
+    func setupNavBarButtons(){
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(handlerMenuPress))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "amazon_icon").withRenderingMode(.alwaysOriginal),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(handlerIconPress))
+    }
+    
+    func handlerMenuPress(){
+        print("Menu Pressed")
+    }
+    func handlerIconPress(){
+        print("Amazon Icon Pressed")
+    }
+    
+    func setupNavigationBarStyle(){
+        print("Setting nav bar styles")
+        // Setup color to navigationBar
+        navigationController?.navigationBar.barTintColor = UIColor(red: 40/255,
+                                                                   green: 40/255,
+                                                                   blue: 40/255,
+                                                                   alpha: 1.0)
+        navigationController?.navigationBar.isTranslucent = false
+        
+        // Set navigationBar font's color
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+    }
+    
     
     func fetchBooks() {
         
