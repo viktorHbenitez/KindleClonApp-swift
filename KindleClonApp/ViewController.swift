@@ -106,10 +106,10 @@ class ViewController: UITableViewController {
                                                             action: #selector(handlerIconPress))
     }
     
-    func handlerMenuPress(){
+    @objc func handlerMenuPress(){
         print("Menu Pressed")
     }
-    func handlerIconPress(){
+    @objc func handlerIconPress(){
         print("Amazon Icon Pressed")
     }
     
@@ -123,7 +123,7 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.isTranslucent = false
         
         // Set navigationBar font's color
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
     

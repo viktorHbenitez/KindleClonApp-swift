@@ -33,7 +33,7 @@ class BookPagerController: UICollectionViewController {
                                                                 action: #selector(handlerCloseBook))
     }
     
-    func handlerCloseBook() {
+    @objc func handlerCloseBook() {
         dismiss(animated: true, completion: nil)
     }
     
